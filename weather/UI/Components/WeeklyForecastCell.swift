@@ -14,16 +14,18 @@ struct WeeklyForecastCell: View {
     
     var body: some View {
         
-        VStack {
+        VStack(alignment: .center) {
             ForEach(mainViewModel.forecast) { value in
                 Divider()
-                HStack {
+                HStack() {
                     Text(value.date)
+                        .scaledToFill()
                     Spacer()
                     Image(systemName: "cloud.sun.fill")
                     Text(value.minMaxTemp)
                     Spacer()
                     Text(value.conditionText)
+                        .scaledToFill()
                 }.padding(.horizontal, 30.0).padding(.vertical, 15)
             }
         }
@@ -32,6 +34,7 @@ struct WeeklyForecastCell: View {
 
 //struct WeeklyForecastCell_Previews: PreviewProvider {
 //    static var previews: some View {
-//        WeeklyForecastCell()
+//        //WeeklyForecastCell()
+//        MainView()
 //    }
 //}

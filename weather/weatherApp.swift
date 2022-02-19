@@ -9,6 +9,7 @@ import SwiftUI
 
 @main
 struct weatherApp: App {
+    let location = LocationManager.shared.location
     var body: some Scene {
         WindowGroup {
             MainView()

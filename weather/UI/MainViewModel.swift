@@ -6,31 +6,29 @@
 //
 
 import Foundation
+import CoreLocation
 
 class MainViewModel: ObservableObject {
     @Published var weather: Weather?
     @Published var forecast = [Forecast]()
+    private let notificationCenter = NotificationCenter.default
     var reqvestManager = RequestManager()
     
-    init() {
-        fetchData()
-    }
-    
-    func fetchData() {
+    @objc func fetchData() {
+        guard let location = LocationManager.shared.location else { return }
+        
         reqvestManager.completion = { [weak self] data in
             DispatchQueue.main.async {
-                guard let self = self else { return }
-                var tempForecast = [Forecast]()
                 
+                guard let self = self else { return }
                 for value in data.daily {
                     let temp = Forecast(id: UUID(),
                                         date: self.getFormattedDate(date: value.dt) ?? "nil",
                                         conditionImage: value.weather.last?.icon ?? "nil",
                                         minMaxTemp: "\(Int(value.temp.max))/\(Int(value.temp.min))°C",
                                         conditionText: value.weather.last?.weatherDescription ?? "nil")
-                    tempForecast.append(temp)
+                    self.forecast.append(temp)
                 }
-                self.forecast = tempForecast
                 
                 let temp = Weather(cityName: data.timezone,
                                    conditionText: data.current.weather.last?.weatherDescription,
@@ -43,37 +41,14 @@ class MainViewModel: ObservableObject {
                 self.weather = temp
             }
         }
-        reqvestManager.getWeather()
-    }
-}
-
-extension MainViewModel {
-    
-    struct Weather {
-        var cityName: String?
-        var conditionText: String?
-        var conditionImage: String?
-        var temperature: String?
-        var feelsLike: String?
-        var humidity: String?
-        var windSpeed: String?
+        reqvestManager.getWeatherInMyLocation(withLocation: location)
+        notificationCenter.removeObserver(self)
     }
     
-    struct Forecast: Identifiable {
-        var id: UUID
-        var date: String
-        var conditionImage: String
-        var minMaxTemp: String
-        var conditionText: String
-    }
-    
-    func getFormattedDate(date: Int) -> String? {
-        
-        let dateformat = Date(timeIntervalSince1970: TimeInterval(date))
-        
-        let dateFormatterSet = DateFormatter()
-        dateFormatterSet.dateFormat = "E, MMM d"
-        //guard let dateformat = dateformat else { return "error" }
-        return dateFormatterSet.string(from: dateformat)
+    func getLocation() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(fetchData),
+                                               name: NSNotification.Name("location"),
+                                               object: nil)
     }
 }

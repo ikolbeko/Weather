@@ -21,9 +21,11 @@ struct MainView: View {
                 }.padding(.horizontal, 30).padding(.top)
                 WeeklyForecastCell(mainViewModel: mainViewModel)
             }
-        }
+        }.onAppear(perform: mainViewModel.getLocation)
     }
 }
+
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
