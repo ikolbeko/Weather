@@ -2,38 +2,41 @@
 //  CurrentWeather.swift
 //  weather
 //
-//  Created by Илья Колбеко on 16.02.22.
+//  Created by Илья Колбеко on 19.02.22.
 //
 
 import SwiftUI
 
 struct CurrentWeather: View {
+    @ObservedObject var mainViewModel: MainViewModel
+    
     var body: some View {
         VStack(alignment: .leading) {
+            
+            // MARK: Top Components
             HStack {
                 Spacer()
                 Button {
-                    print("")
+                    mainViewModel.fetchData()
                 } label: {
                     Image(systemName: "magnifyingglass")
                         .font(.system(size: 25))
                         .frame(width: 44, height: 44, alignment: .center)
                 }
             }
-            Text("London")
+            Text(mainViewModel.weather?.cityName ?? "nil")
                 .font(.largeTitle)
             Spacer()
             
-            Text("Rain")
+            Text(mainViewModel.weather?.conditionText ?? "nil")
             
             Spacer()
             
             HStack() {
                 Image(systemName: "cloud.rain.fill")
                     .font(.system(size: 100))
-                Text("12°")
+                Text(mainViewModel.weather?.temperature ?? "nil")
                     .font(.system(size: 50))
-                
             }
             
             // MARK: Bottom Components
@@ -41,26 +44,26 @@ struct CurrentWeather: View {
                 VStack {
                     Label("Feelslike", systemImage: "thermometer")
                     Spacer()
-                    Text("12°")
-                        .font(.system(size: 22))
-                }.padding(.vertical, 10.0)
-
-                Spacer()
-                
-                VStack {
-                    Label("Humidity", systemImage: "thermometer")
-                    Spacer()
-                    Text("60%")
-                        .font(.system(size: 22))
+                    Text(mainViewModel.weather?.feelsLike ?? "nil")
+                        .font(.system(size: 18))
                 }.padding(.vertical, 10.0)
                 
                 Spacer()
                 
                 VStack {
-                    Label("Wind", systemImage: "thermometer")
+                    Label("Humidity", systemImage: "humidity")
                     Spacer()
-                    Text("6 m/s")
-                        .font(.system(size: 22))
+                    Text(mainViewModel.weather?.humidity ?? "nil")
+                        .font(.system(size: 18))
+                }.padding(.vertical, 10.0)
+                
+                Spacer()
+                
+                VStack {
+                    Label("Wind", systemImage: "wind")
+                    Spacer()
+                    Text(mainViewModel.weather?.windSpeed ?? "nill")
+                        .font(.system(size: 18))
                 }.padding(.vertical, 10.0)
             }
         }.padding(.horizontal, 30.0)
