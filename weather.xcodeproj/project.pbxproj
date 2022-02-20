@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3114DFE327C09F830057EF3B /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3114DFE227C09F830057EF3B /* LocationManager.swift */; };
+		311F949027C209ED0040F758 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311F948F27C209ED0040F758 /* String+Extensions.swift */; };
 		31C7552827C1314C00514BEA /* MainViewModel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C7552727C1314C00514BEA /* MainViewModel+Extensions.swift */; };
 		31C7552A27C1A29E00514BEA /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C7552927C1A29E00514BEA /* LocationData.swift */; };
 		31FA152D27C0805100BDE9D8 /* weatherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FA152C27C0805100BDE9D8 /* weatherApp.swift */; };
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		3114DFE127C0843C0057EF3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3114DFE227C09F830057EF3B /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		311F948F27C209ED0040F758 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		31C7552727C1314C00514BEA /* MainViewModel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewModel+Extensions.swift"; sourceTree = "<group>"; };
 		31C7552927C1A29E00514BEA /* LocationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationData.swift; sourceTree = "<group>"; };
 		31FA152927C0805100BDE9D8 /* weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,6 +96,7 @@
 			children = (
 				31FA154827C0820C00BDE9D8 /* URLSession+Extensions.swift */,
 				31C7552727C1314C00514BEA /* MainViewModel+Extensions.swift */,
+				311F948F27C209ED0040F758 /* String+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 				31FA152F27C0805100BDE9D8 /* MainView.swift in Sources */,
 				31FA154327C0817200BDE9D8 /* CurrentWeather.swift in Sources */,
 				31C7552827C1314C00514BEA /* MainViewModel+Extensions.swift in Sources */,
+				311F949027C209ED0040F758 /* String+Extensions.swift in Sources */,
 				31FA152D27C0805100BDE9D8 /* weatherApp.swift in Sources */,
 				31FA153F27C0812D00BDE9D8 /* MainViewModel.swift in Sources */,
 				31FA154727C081DF00BDE9D8 /* RequestManager.swift in Sources */,

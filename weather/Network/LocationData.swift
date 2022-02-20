@@ -10,7 +10,7 @@ import Foundation
 // MARK: - LocationDatum
 struct LocationDatum: Codable {
     let name: String
-    let localNames: LocalNames
+    let localNames: [String: String]
     let lat, lon: Double
     let country: String
 
@@ -21,16 +21,4 @@ struct LocationDatum: Codable {
     }
 }
 
-// MARK: - LocalNames
-struct LocalNames: Codable {
-    let localNamesIs: String
-    let ru, de, en: String
-
-    enum CodingKeys: String, CodingKey {
-        case localNamesIs = "is"
-        case en, ru, de
-    }
-}
-
 typealias LocationData = [LocationDatum]
-

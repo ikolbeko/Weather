@@ -28,6 +28,17 @@ class MainViewModel: ObservableObject {
         notificationCenter.removeObserver(self)
     }
     
+    func getWeather(inCity city: String) {
+        reqvestManager.completion = { [weak self] data in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                self.setDataInForecast(from: data)
+                self.setDataInWeather(from: data)
+            }
+        }
+        reqvestManager.getWeather(inCity: city)
+    }
+    
     func getLocation() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(fetchData),

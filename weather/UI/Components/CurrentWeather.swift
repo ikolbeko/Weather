@@ -17,7 +17,7 @@ struct CurrentWeather: View {
             HStack {
                 Spacer()
                 Button {
-                    mainViewModel.fetchData()
+                    mainViewModel.getWeather(inCity: "санкт%20петербург")
                 } label: {
                     Image(systemName: "magnifyingglass")
                         .font(.system(size: 25))
