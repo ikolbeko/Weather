@@ -11,7 +11,6 @@ import CoreLocation
 class LocationManager: NSObject ,CLLocationManagerDelegate {
     private var manager = CLLocationManager()
     var location: CLLocationCoordinate2D?
-    //var place: String?
     
     static let shared = LocationManager()
     

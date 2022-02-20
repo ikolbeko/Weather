@@ -30,7 +30,7 @@ class MainViewModel: ObservableObject {
                     self.forecast.append(temp)
                 }
                 
-                let temp = Weather(cityName: data.timezone,
+                let temp = Weather(cityName: self.reqvestManager.city ?? data.timezone,
                                    conditionText: data.current.weather.last?.weatherDescription,
                                    conditionImage: data.current.weather.last?.icon,
                                    temperature: "\(Int(data.current.temp))°C",
@@ -41,7 +41,7 @@ class MainViewModel: ObservableObject {
                 self.weather = temp
             }
         }
-        reqvestManager.getWeatherInMyLocation(withLocation: location)
+        reqvestManager.getWeather(inLocation: location)
         notificationCenter.removeObserver(self)
     }
     
