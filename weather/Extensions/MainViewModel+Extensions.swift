@@ -34,4 +34,28 @@ extension MainViewModel {
         dateFormatterSet.dateFormat = "E, MMM d"
         return dateFormatterSet.string(from: dateformat)
     }
+    
+    func setDataInForecast(from data: WeatherData) {
+        self.forecast = [Forecast]()
+        for value in data.daily {
+            let temp = Forecast(id: UUID(),
+                                date: self.getFormattedDate(date: value.dt) ?? "nil",
+                                conditionImage: value.weather.last?.icon ?? "nil",
+                                minMaxTemp: "\(Int(value.temp.max))/\(Int(value.temp.min))°C",
+                                conditionText: value.weather.last?.weatherDescription ?? "nil")
+            self.forecast.append(temp)
+        }
+    }
+    
+    func setDataInWeather(from data: WeatherData) {
+        let temp = Weather(cityName: self.reqvestManager.city ?? data.timezone,
+                           conditionText: data.current.weather.last?.weatherDescription,
+                           conditionImage: data.current.weather.last?.icon,
+                           temperature: "\(Int(data.current.temp))°C",
+                           feelsLike: "\(Int(data.current.feelsLike))°C",
+                           humidity: "\(data.current.humidity) %",
+                           windSpeed: "\(data.current.windSpeed) Mph")
+        
+        self.weather = temp
+    }
 }
