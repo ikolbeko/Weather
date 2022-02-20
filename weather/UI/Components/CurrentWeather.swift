@@ -9,29 +9,37 @@ import SwiftUI
 
 struct CurrentWeather: View {
     @ObservedObject var mainViewModel: MainViewModel
+    @State private var cityName: String = ""
     
     var body: some View {
         VStack(alignment: .leading) {
             
             // MARK: Top Components
             HStack {
-                Spacer()
-                Button {
-                    mainViewModel.getWeather(inCity: "стокгольм")
-                } label: {
-                    Image(systemName: "magnifyingglass")
-                        .font(.system(size: 25))
-                        .frame(width: 44, height: 44, alignment: .center)
+                TextField(
+                    "Search...",
+                    text: $cityName
+                )
+                    .textFieldStyle(.roundedBorder)
+                    .padding(.top, 15)
+                    .onSubmit {
+                        mainViewModel.getWeather(inCity: cityName)
+                        cityName = ""
                 }
+//                Spacer()
+//                Button {
+//                    mainViewModel.getWeather(inCity: "стокгольм")
+//                } label: {
+//                    Image(systemName: "magnifyingglass")
+//                        .font(.system(size: 25))
+//                        .frame(width: 44, height: 44, alignment: .center)
+//                }
             }
             Text(mainViewModel.weather?.cityName ?? "")
                 .font(.largeTitle)
             Spacer()
-            
             Text(mainViewModel.weather?.conditionText ?? "")
-            
             Spacer()
-            
             HStack() {
                 Image(systemName: "cloud.rain.fill")
                     .font(.system(size: 100))
@@ -47,18 +55,14 @@ struct CurrentWeather: View {
                     Text(mainViewModel.weather?.feelsLike ?? "")
                         .font(.system(size: 18))
                 }.padding(.vertical, 10.0)
-                
                 Spacer()
-                
                 VStack {
                     Label("Humidity", systemImage: "humidity")
                     Spacer()
                     Text(mainViewModel.weather?.humidity ?? "")
                         .font(.system(size: 18))
                 }.padding(.vertical, 10.0)
-                
                 Spacer()
-                
                 VStack {
                     Label("Wind", systemImage: "wind")
                     Spacer()
