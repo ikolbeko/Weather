@@ -14,9 +14,8 @@ class MainViewModel: ObservableObject {
     let notificationCenter = NotificationCenter.default
     var reqvestManager = RequestManager()
     
-    @objc func fetchData() {
+    @objc func getWeatherInlocation() {
         guard let location = LocationManager.shared.location else { return }
-        
         reqvestManager.completion = { [weak self] data in
             DispatchQueue.main.async {
                 guard let self = self else { return }
@@ -41,7 +40,7 @@ class MainViewModel: ObservableObject {
     
     func getLocation() {
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(fetchData),
+                                               selector: #selector(getWeatherInlocation),
                                                name: NSNotification.Name("location"),
                                                object: nil)
     }

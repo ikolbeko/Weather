@@ -9,6 +9,8 @@ import SwiftUI
 
 import SwiftUI
 
+let contentSize = UIScreen.main.bounds.size.width / 3.5
+
 struct WeeklyForecastCell: View {
     @ObservedObject var mainViewModel: MainViewModel
     
@@ -17,24 +19,26 @@ struct WeeklyForecastCell: View {
         VStack(alignment: .center) {
             ForEach(mainViewModel.forecast) { value in
                 Divider()
-                HStack() {
+                HStack(alignment: .center) {
                     Text(value.date)
-                        .scaledToFill()
-                    Spacer()
-                    Image(systemName: "cloud.sun.fill")
-                    Text(value.minMaxTemp)
-                    Spacer()
+                        .frame(width: contentSize, height: 30, alignment: .leading)
+                    HStack {
+                        Image(systemName: "cloud.sun.fill")
+                        Text(value.minMaxTemp)
+                    }
+                    .frame(width: contentSize, height: 30, alignment: .center)
                     Text(value.conditionText)
-                        .scaledToFill()
-                }.padding(.horizontal, 30.0).padding(.vertical, 15)
+                        .frame(width: contentSize, height: 30, alignment: .trailing)
+                        .font(.system(size: 15))
+                }.padding(.horizontal, 30)
             }
         }
     }
 }
 
-//struct WeeklyForecastCell_Previews: PreviewProvider {
-//    static var previews: some View {
-//        //WeeklyForecastCell()
-//        MainView()
-//    }
-//}
+struct WeeklyForecastCell_Previews: PreviewProvider {
+    static var previews: some View {
+        //WeeklyForecastCell()
+        MainView()
+    }
+}
