@@ -30,13 +30,25 @@ class RequestManager {
         }
     }
     
-    //        func getWeather(inCity city: String) {
-    //            let url = URL(string: "\(baseURL)?lat=\(location.latitude)&lon=\(location.longitude)&exclude=minutely,hourly&units=metric&lang=en&appid=\(apiKey)")
-    //            guard let url = url else { return }
-    //            URLSession.shared.getData(url: url, for: WeatherData) { value in
-    //                self.completion(value)
-    //            }
-    //        }
+    func getWeather (inCity city: String) {
+        var latitude: Double = 0
+        var longtitude: Double = 0
+        
+        let searchURL = "\(geoURL)direct?q=\(city)&appid=\(apiKey)"
+        URLSession.shared.getData(url: searchURL) { (data: LocationData?) in
+            guard let lat = data?.last?.lat else { return }
+            guard let lon = data?.last?.lon else { return }
+            latitude = lat
+            longtitude = lon
+        }
+        
+        let url = "\(baseURL)?lat=\(latitude)&lon=\(longtitude)&exclude=minutely,hourly&units=metric&lang=en&appid=\(apiKey)"
+        URLSession.shared.getData(url: url) { (data: WeatherData?) in
+            guard let data = data else { return }
+            self.completion?(data)
+        }
+        
+    }
 }
 
 
