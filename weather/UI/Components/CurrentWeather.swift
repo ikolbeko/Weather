@@ -24,18 +24,18 @@ struct CurrentWeather: View {
                         .frame(width: 44, height: 44, alignment: .center)
                 }
             }
-            Text(mainViewModel.weather?.cityName ?? "nil")
+            Text(mainViewModel.weather?.cityName ?? "")
                 .font(.largeTitle)
             Spacer()
             
-            Text(mainViewModel.weather?.conditionText ?? "nil")
+            Text(mainViewModel.weather?.conditionText ?? "")
             
             Spacer()
             
             HStack() {
                 Image(systemName: "cloud.rain.fill")
                     .font(.system(size: 100))
-                Text(mainViewModel.weather?.temperature ?? "nil")
+                Text(mainViewModel.weather?.temperature ?? "")
                     .font(.system(size: 50))
             }
             
@@ -44,7 +44,7 @@ struct CurrentWeather: View {
                 VStack {
                     Label("Feelslike", systemImage: "thermometer")
                     Spacer()
-                    Text(mainViewModel.weather?.feelsLike ?? "nil")
+                    Text(mainViewModel.weather?.feelsLike ?? "")
                         .font(.system(size: 18))
                 }.padding(.vertical, 10.0)
                 
@@ -53,7 +53,7 @@ struct CurrentWeather: View {
                 VStack {
                     Label("Humidity", systemImage: "humidity")
                     Spacer()
-                    Text(mainViewModel.weather?.humidity ?? "nil")
+                    Text(mainViewModel.weather?.humidity ?? "")
                         .font(.system(size: 18))
                 }.padding(.vertical, 10.0)
                 
@@ -62,7 +62,7 @@ struct CurrentWeather: View {
                 VStack {
                     Label("Wind", systemImage: "wind")
                     Spacer()
-                    Text(mainViewModel.weather?.windSpeed ?? "nill")
+                    Text(mainViewModel.weather?.windSpeed ?? "")
                         .font(.system(size: 18))
                 }.padding(.vertical, 10.0)
             }

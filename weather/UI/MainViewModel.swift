@@ -21,6 +21,7 @@ class MainViewModel: ObservableObject {
             DispatchQueue.main.async {
                 
                 guard let self = self else { return }
+                self.forecast = [Forecast]()
                 for value in data.daily {
                     let temp = Forecast(id: UUID(),
                                         date: self.getFormattedDate(date: value.dt) ?? "nil",
