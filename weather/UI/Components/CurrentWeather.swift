@@ -25,15 +25,7 @@ struct CurrentWeather: View {
                     .onSubmit {
                         mainViewModel.getWeather(inCity: cityName)
                         cityName = ""
-                }
-//                Spacer()
-//                Button {
-//                    mainViewModel.getWeather(inCity: "стокгольм")
-//                } label: {
-//                    Image(systemName: "magnifyingglass")
-//                        .font(.system(size: 25))
-//                        .frame(width: 44, height: 44, alignment: .center)
-//                }
+                    }
             }
             Text(mainViewModel.weather?.cityName ?? "")
                 .font(.largeTitle)
@@ -41,8 +33,10 @@ struct CurrentWeather: View {
             Text(mainViewModel.weather?.conditionText ?? "")
             Spacer()
             HStack() {
-                Image(systemName: "cloud.rain.fill")
+                Image(systemName: mainViewModel.weather?.weatherIcon ?? "")
                     .font(.system(size: 100))
+                    .symbolRenderingMode(.multicolor)
+                    .shadow(radius: 5)
                 Text(mainViewModel.weather?.temperature ?? "")
                     .font(.system(size: 50))
             }

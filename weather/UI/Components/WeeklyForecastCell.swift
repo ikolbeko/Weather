@@ -23,7 +23,9 @@ struct WeeklyForecastCell: View {
                     Text(value.date)
                         .frame(width: contentSize, height: 30, alignment: .leading)
                     HStack {
-                        Image(systemName: "cloud.sun.fill")
+                        Image(systemName: value.weatherIcon)
+                            .symbolRenderingMode(.multicolor)
+                            .shadow(radius: 10)
                         Text(value.minMaxTemp)
                     }
                     .frame(width: contentSize, height: 30, alignment: .center)
