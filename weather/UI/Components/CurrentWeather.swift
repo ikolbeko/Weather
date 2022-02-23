@@ -27,17 +27,17 @@ struct CurrentWeather: View {
                         cityName = ""
                     }
             }
-            Text(mainViewModel.weather?.cityName ?? "")
+            Text(mainViewModel.forecast?.cityName ?? "")
                 .font(.largeTitle)
             Spacer()
-            Text(mainViewModel.weather?.conditionText ?? "")
+            Text(mainViewModel.forecast?.conditionText ?? "")
             Spacer()
             HStack() {
-                Image(systemName: mainViewModel.weather?.weatherIcon ?? "")
+                Image(systemName: mainViewModel.forecast?.weatherIcon ?? "")
                     .font(.system(size: 100))
                     .symbolRenderingMode(.multicolor)
                     .shadow(radius: 5)
-                Text(mainViewModel.weather?.temperature ?? "")
+                Text(mainViewModel.forecast?.temperature ?? "")
                     .font(.system(size: 50))
             }
             
@@ -46,21 +46,21 @@ struct CurrentWeather: View {
                 VStack {
                     Label("Feelslike", systemImage: "thermometer")
                     Spacer()
-                    Text(mainViewModel.weather?.feelsLike ?? "")
+                    Text(mainViewModel.forecast?.feelsLike ?? "")
                         .font(.system(size: 18))
                 }.padding(.vertical, 10.0)
                 Spacer()
                 VStack {
                     Label("Humidity", systemImage: "humidity")
                     Spacer()
-                    Text(mainViewModel.weather?.humidity ?? "")
+                    Text(mainViewModel.forecast?.humidity ?? "")
                         .font(.system(size: 18))
                 }.padding(.vertical, 10.0)
                 Spacer()
                 VStack {
                     Label("Wind", systemImage: "wind")
                     Spacer()
-                    Text(mainViewModel.weather?.windSpeed ?? "")
+                    Text(mainViewModel.forecast?.windSpeed ?? "")
                         .font(.system(size: 18))
                 }.padding(.vertical, 10.0)
             }

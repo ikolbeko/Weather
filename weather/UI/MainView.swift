@@ -19,7 +19,16 @@ struct MainView: View {
                         .font(.system(size: 20))
                     Spacer()
                 }.padding(.horizontal, 30).padding(.top)
-                WeeklyForecastCell(mainViewModel: mainViewModel)
+                
+                //MARK: Week forecast table view
+                if let weekForecast = mainViewModel.forecast?.weekForecast {
+                    VStack(alignment: .center) {
+                        ForEach(weekForecast) { value in
+                            WeeklyForecastCell(value)
+                        }
+                    }
+                }
+                
             }
         }.onAppear(perform: mainViewModel.getLocation)
     }

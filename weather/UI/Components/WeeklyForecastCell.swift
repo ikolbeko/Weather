@@ -7,34 +7,31 @@
 
 import SwiftUI
 
-import SwiftUI
-
 let contentSize = UIScreen.main.bounds.size.width / 3.5
 
 struct WeeklyForecastCell: View {
-    @ObservedObject var mainViewModel: MainViewModel
+    let forecast: WeekForecast
+    
+    init (_ value: WeekForecast) {
+        forecast = value
+    }
     
     var body: some View {
-        
-        VStack(alignment: .center) {
-            ForEach(mainViewModel.forecast) { value in
-                Divider()
-                HStack(alignment: .center) {
-                    Text(value.date)
-                        .frame(width: contentSize, height: 30, alignment: .leading)
-                    HStack {
-                        Image(systemName: value.weatherIcon)
-                            .symbolRenderingMode(.multicolor)
-                            .shadow(radius: 10)
-                        Text(value.minMaxTemp)
-                    }
-                    .frame(width: contentSize, height: 30, alignment: .center)
-                    Text(value.conditionText)
-                        .frame(width: contentSize, height: 30, alignment: .trailing)
-                        .font(.system(size: 15))
-                }.padding(.horizontal, 30)
-            }
-        }
+            Divider()
+            HStack(alignment: .center) {
+                Text(forecast.date)
+                    .frame(width: contentSize, height: 30, alignment: .leading)
+                HStack {
+                    Image(systemName: forecast.weatherIcon)
+                        .symbolRenderingMode(.multicolor)
+                        .shadow(radius: 10)
+                    Text(forecast.minMaxTemp)
+                }
+                .frame(width: contentSize, height: 30, alignment: .center)
+                Text(forecast.conditionText)
+                    .frame(width: contentSize, height: 30, alignment: .trailing)
+                    .font(.system(size: 15))
+            }.padding(.horizontal, 30)
     }
 }
 

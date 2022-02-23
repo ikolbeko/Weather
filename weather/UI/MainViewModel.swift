@@ -9,8 +9,7 @@ import Foundation
 import CoreLocation
 
 class MainViewModel: ObservableObject {
-    @Published var weather: Weather?
-    @Published var forecast = [Forecast]()
+    @Published var forecast: Forecast?
     let notificationCenter = NotificationCenter.default
     var reqvestManager = RequestManager()
     
@@ -20,7 +19,6 @@ class MainViewModel: ObservableObject {
             DispatchQueue.main.async {
                 guard let self = self else { return }
                 self.setDataInForecast(from: data)
-                self.setDataInWeather(from: data)
             }
         }
         reqvestManager.getWeather(inLocation: location)
@@ -32,7 +30,6 @@ class MainViewModel: ObservableObject {
             DispatchQueue.main.async {
                 guard let self = self else { return }
                 self.setDataInForecast(from: data)
-                self.setDataInWeather(from: data)
             }
         }
         reqvestManager.getWeather(inCity: city)
