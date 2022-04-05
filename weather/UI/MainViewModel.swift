@@ -13,31 +13,27 @@ class MainViewModel: ObservableObject {
     let notificationCenter = NotificationCenter.default
     var reqvestManager = RequestManager()
     
-    @objc func getWeatherInlocation() {
+    @objc func getWeatherInMylocation() {
         guard let location = LocationManager.shared.location else { return }
-        reqvestManager.completion = { [weak self] data in
+        reqvestManager.getWeather(inLocation: location) { data in
             DispatchQueue.main.async {
-                guard let self = self else { return }
                 self.setDataInForecast(from: data)
             }
         }
-        reqvestManager.getWeather(inLocation: location)
         notificationCenter.removeObserver(self)
     }
     
     func getWeather(inCity city: String) {
-        reqvestManager.completion = { [weak self] data in
+        reqvestManager.getWeather(inCity: city) { data in
             DispatchQueue.main.async {
-                guard let self = self else { return }
                 self.setDataInForecast(from: data)
             }
         }
-        reqvestManager.getWeather(inCity: city)
     }
     
     func getLocation() {
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(getWeatherInlocation),
+                                               selector: #selector(getWeatherInMylocation),
                                                name: NSNotification.Name("location"),
                                                object: nil)
     }

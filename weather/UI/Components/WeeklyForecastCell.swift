@@ -29,8 +29,10 @@ struct WeeklyForecastCell: View {
                 }
                 .frame(width: contentSize, height: 30, alignment: .center)
                 Text(forecast.conditionText)
-                    .frame(width: contentSize, height: 30, alignment: .trailing)
+                    .frame(width: contentSize, alignment: .center)
                     .font(.system(size: 15))
+                    .multilineTextAlignment(.center)
+
             }.padding(.horizontal, 30)
     }
 }

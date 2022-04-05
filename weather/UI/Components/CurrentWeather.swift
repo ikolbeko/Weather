@@ -20,12 +20,12 @@ struct CurrentWeather: View {
                     "Search...",
                     text: $cityName
                 )
-                    .textFieldStyle(.roundedBorder)
-                    .padding(.top, 15)
-                    .onSubmit {
-                        mainViewModel.getWeather(inCity: cityName)
-                        cityName = ""
-                    }
+                .textFieldStyle(.roundedBorder)
+                .padding(.top, 15)
+                .onSubmit {
+                    mainViewModel.getWeather(inCity: cityName)
+                    cityName = ""
+                }
             }
             Text(mainViewModel.forecast?.cityName ?? "")
                 .font(.largeTitle)
@@ -44,7 +44,13 @@ struct CurrentWeather: View {
             // MARK: Bottom Components
             HStack(alignment: .center) {
                 VStack {
-                    Label("Feelslike", systemImage: "thermometer")
+                    Label {
+                        Text("Feelslike")
+                            .multilineTextAlignment(.center)
+                    } icon: {
+                        Image(systemName: "thermometer")
+                    }
+                    
                     Spacer()
                     Text(mainViewModel.forecast?.feelsLike ?? "")
                         .font(.system(size: 18))
@@ -59,6 +65,8 @@ struct CurrentWeather: View {
                 Spacer()
                 VStack {
                     Label("Wind", systemImage: "wind")
+                        .multilineTextAlignment(.center)
+                    
                     Spacer()
                     Text(mainViewModel.forecast?.windSpeed ?? "")
                         .font(.system(size: 18))

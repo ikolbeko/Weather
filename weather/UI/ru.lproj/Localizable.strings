@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  weather
+
+  Created by Илья Колбеко on 5.04.22.
+  
+*/
+
+"Week forecast" = "Прогноз на неделю";
+"language" = "ru";
+"Search..." = "Поиск...";
+"Feelslike" = "Ощущается как";
+"Humidity" = "Влажность";
+"Wind" = "Ветер";
+"speed" = "м/с";

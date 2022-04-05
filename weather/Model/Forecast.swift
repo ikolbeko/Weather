@@ -40,9 +40,16 @@ func setWeatherIcon(_ conditionID: Int) -> String {
     case 300...399: return "cloud.drizzle.fill"
     case 500...599: return "cloud.sun.rain.fill"
     case 600...699: return "cloud.snow.fill"
-    case 700...799: return "wind.fill"
+    case 700...799: return "wind"
     case 800: return "sun.max.fill"
     case 801...899: return "cloud.sun.fill"
     default: return "cloud.sun.fill"
     }
+}
+
+func getFormattedDate(date: Int) -> String? {
+    let dateformat = Date(timeIntervalSince1970: TimeInterval(date))
+    let dateFormatterSet = DateFormatter()
+    dateFormatterSet.dateFormat = "E, MMM d"
+    return dateFormatterSet.string(from: dateformat)
 }
