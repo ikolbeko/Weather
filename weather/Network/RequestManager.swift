@@ -21,7 +21,6 @@ class RequestManager {
     func getWeather (inLocation location: CLLocationCoordinate2D, completion: @escaping (WeatherData) -> Void) {
         self.location = location
         let geoURL = "\(geoURL)reverse?lat=\(location.latitude)&lon=\(location.longitude)&appid=\(apiKey)"
-        print(geoURL)
         URLSession.shared.getData(url: geoURL) { (data: LocationData?) in
             guard let city = data?.last?.name else { return }
             self.getWeather(inCity: city) { data in
@@ -32,7 +31,6 @@ class RequestManager {
     
     func getWeather (inCity city: String, completion: @escaping (WeatherData) -> Void) {
         let searchURL = "\(geoURL)direct?q=\(city)&appid=\(apiKey)".encodeUrl
-        print(searchURL)
         URLSession.shared.getData(url: searchURL) { (data: LocationData?) in
             if let lat = data?.last?.lat {
                 if let lon = data?.last?.lon {
@@ -59,16 +57,3 @@ class RequestManager {
         }
     }
 }
-
-
-//        let url = URL(string: "\(baseURL)?lat=\(location.latitude)&lon=\(location.longitude)&exclude=minutely,hourly&units=metric&lang=en&appid=\(apiKey)")
-//        guard let url = url else { return }
-//        URLSession.shared.dataTask(with: url, completionHandler: { (weather: WeatherData?, response, error) in
-//            if let error = error {
-//                print(error.localizedDescription)
-//                return
-//            }
-//            if let weather = weather {
-//                self.completion?(weather)
-//            }
-//        }).resume()

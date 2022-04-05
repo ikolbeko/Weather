@@ -16,17 +16,27 @@ struct CurrentWeather: View {
             
             // MARK: Top Components
             HStack {
+                
+                Button {
+                    mainViewModel.getWeatherInMylocation()
+                } label: {
+                    Image(systemName: "location.fill")
+                }
+                .buttonStyle(.bordered)
+
+                
                 TextField(
                     "Search...",
                     text: $cityName
                 )
                 .textFieldStyle(.roundedBorder)
-                .padding(.top, 15)
                 .onSubmit {
                     mainViewModel.getWeather(inCity: cityName)
                     cityName = ""
                 }
             }
+            .padding(.top, 15)
+
             Text(mainViewModel.forecast?.cityName ?? "")
                 .font(.largeTitle)
             Spacer()
@@ -65,8 +75,6 @@ struct CurrentWeather: View {
                 Spacer()
                 VStack {
                     Label("Wind", systemImage: "wind")
-                        .multilineTextAlignment(.center)
-                    
                     Spacer()
                     Text(mainViewModel.forecast?.windSpeed ?? "")
                         .font(.system(size: 18))
