@@ -43,7 +43,7 @@ struct CurrentWeather: View {
             Text(mainViewModel.forecast?.conditionText ?? "")
             Spacer()
             HStack() {
-                Image(systemName: mainViewModel.forecast?.weatherIcon ?? "")
+                Image(systemName: mainViewModel.forecast?.currentWeatherIcon ?? "")
                     .font(.system(size: 100))
                     .symbolRenderingMode(.multicolor)
                     .shadow(radius: 5)

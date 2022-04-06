@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension String{
+extension String {
     var encodeUrl : String
     {
         return self.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!
